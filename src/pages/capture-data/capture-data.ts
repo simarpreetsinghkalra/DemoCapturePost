@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { ServiceProvider } from '../../providers/service/service';
+import { CaptureData } from '../../providers/data-modals/data-modals';
 
 /**
  * Generated class for the CaptureDataPage page.
@@ -18,8 +20,14 @@ export class CaptureDataPage {
   humidity: number = 13;
   pressure: number = 45;
   lightStatus: boolean = true;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  textToPost: string;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public service: ServiceProvider, private alertCtrl: AlertController) {
+    this.service.getData().subscribe((res: CaptureData)=>{
+      this.temprature = res.temprature;
+      this.humidity = res.humidity;
+      this.pressure = res.pressure;
+      this.lightStatus = res.lightStatus;
+    });
   }
 
   ionViewDidLoad() {
@@ -27,7 +35,20 @@ export class CaptureDataPage {
   }
 
   pushData(){
-    
+    this.service.pushData(this.textToPost).subscribe((res: string)=>{
+      let alert = this.alertCtrl.create({
+        title: "Message",
+        message: res,
+        buttons: [
+          {
+            text: 'Okay',
+            role: 'cancel',
+          }
+        ]
+
+      });
+      alert.present();
+    });
   }
 
 }

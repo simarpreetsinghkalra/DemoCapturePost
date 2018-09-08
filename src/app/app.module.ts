@@ -8,6 +8,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ServiceProvider } from '../providers/service/service';
+import { DataModalsProvider } from '../providers/data-modals/data-modals';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { ServiceProvider } from '../providers/service/service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -27,7 +30,9 @@ import { ServiceProvider } from '../providers/service/service';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ServiceProvider
+    ServiceProvider,
+    DataModalsProvider,
+    HttpClient
   ]
 })
 export class AppModule {}
