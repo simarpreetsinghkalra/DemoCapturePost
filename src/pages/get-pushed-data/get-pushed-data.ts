@@ -18,13 +18,19 @@ import { PushedData } from '../../providers/data-modals/data-modals';
 export class GetPushedDataPage {
   data: {date: string, data: string}[] = [{date: "Sep 16, 2017" ,data: 'hello'}];
   constructor(public navCtrl: NavController, public navParams: NavParams, public service: ServiceProvider) {
-    this.service.getPushedData().subscribe((res: PushedData[])=>{
-      this.data = [...res]; 
-    });
+    this.refreshData();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad GetPushedDataPage');
+  }
+
+  refreshData(){
+    this.service.getPushedData().subscribe((res: PushedData[])=>{
+      this.data = [...res]; 
+    },err=>{
+      console.log(err);
+    });
   }
 
 }

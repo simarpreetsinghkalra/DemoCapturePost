@@ -28,6 +28,8 @@ export class CaptureDataPage {
       this.humidity = res.humidity;
       this.pressure = res.pressure;
       this.lightStatus = res.lightStatus;
+    },err=>{
+      console.log(err);
     });
   }
 
@@ -49,6 +51,8 @@ export class CaptureDataPage {
 
       });
       alert.present();
+    }, err=>{
+      console.log(err);
     });
   }
 
