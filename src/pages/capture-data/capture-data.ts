@@ -1,3 +1,4 @@
+import { PushDataResponse } from './../../providers/data-modals/data-modals';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { ServiceProvider } from '../../providers/service/service';
@@ -35,10 +36,10 @@ export class CaptureDataPage {
   }
 
   pushData(){
-    this.service.pushData(this.textToPost).subscribe((res: string)=>{
+    this.service.pushData(this.textToPost).subscribe((res: PushDataResponse)=>{
       let alert = this.alertCtrl.create({
         title: "Message",
-        message: res,
+        message: res.status,
         buttons: [
           {
             text: 'Okay',

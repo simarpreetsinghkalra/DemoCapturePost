@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CaptureData, PushedData } from '../data-modals/data-modals';
+import { PushedData } from '../data-modals/data-modals';
 
 /*
   Generated class for the ServiceProvider provider.
@@ -11,6 +11,7 @@ import { CaptureData, PushedData } from '../data-modals/data-modals';
 @Injectable()
 export class ServiceProvider {
   baseUrl = "http://sbbsuniversity.ac.in/";
+  
   constructor(public http: HttpClient) {
     console.log('Hello ServiceProvider Provider');
   }
@@ -23,8 +24,10 @@ export class ServiceProvider {
     return this.http.get<PushedData[]>(this.baseUrl + "DemoAppPostedData");
   }
 
-  pushData(data: string){
-    return this.http.post(this.baseUrl + "DemoAppPostData",{"data" :  data});
+  pushData(data){
+    return this.http.post(this.baseUrl + "DemoAppPostData", undefined,{
+      params: {data: data}
+    });
   }
 
 }

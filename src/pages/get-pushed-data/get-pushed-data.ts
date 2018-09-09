@@ -19,7 +19,7 @@ export class GetPushedDataPage {
   data: {date: string, data: string}[] = [{date: "Sep 16, 2017" ,data: 'hello'}];
   constructor(public navCtrl: NavController, public navParams: NavParams, public service: ServiceProvider) {
     this.service.getPushedData().subscribe((res: PushedData[])=>{
-      this.data = {...res}; 
+      this.data = [...res]; 
     });
   }
 

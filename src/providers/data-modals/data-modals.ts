@@ -27,3 +27,7 @@ export interface PushedData {
   date: string;
   data: string;
 }
+
+export interface PushDataResponse {
+  status: string;
+}
